@@ -2,9 +2,7 @@ import axios from "axios";
 import {setResponseTime} from "../utils/addResponseTime.js"
 import { setResponse } from "../utils/addResponse.js";
 
-const getLiveDeliveryInfo = (url,id,api_key,counter) => {
-    objects.map( async (i) => {
-
+const getLiveDeliveryInfo = async (url,id,api_key) => {
         var start = Date.now(); // Start rime req
 
         try {
@@ -17,22 +15,15 @@ const getLiveDeliveryInfo = (url,id,api_key,counter) => {
             }
 
             var res = await axios(config);
-            setResponse(res.data);
-            console.log('data' + JSON.stringify(res.data));        
+            setResponse(res.data);     
             
             var millis = Date.now() - start; // End time req
             setResponseTime(millis);
-            console.log('response ' + JSON.stringify(millis));
-
-           
 
         }catch(err){
             console.error(err);
-        }
-    });
+        };
 
-    
-    
 };
 
 export { getLiveDeliveryInfo }
